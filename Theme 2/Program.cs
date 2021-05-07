@@ -17,7 +17,7 @@ namespace Theme_2
             //Task9();
             //Task10();
             //Task11();
-            //Task12(InputCheck());
+            //Task12();
             //Arrays.Task1();
             //Arrays.Task2();
             //Arrays.Task3();
@@ -37,14 +37,22 @@ namespace Theme_2
             //Strings.Task10();
         }
         //Ввести трехзначное число. Посчитать сумму цифр, вывести на экран.
-        public static void Task1 ()
+        public static void Task1()
         {
             Console.WriteLine("Введите трехзначное число");
-            int x = InputCheck();
+            int x;
+            do
+            {
+                x = Utilities.InputCheck(); 
+                if (Math.Abs(x) < 100 || Math.Abs(x) > 999)
+                {
+                    Console.WriteLine("Число не трехзначное , введите новое число");
+                }
+            } while (x < 100 && x > 999);
             int sum = 0;
             while (x != 0)
             {
-                sum = x % 10 + sum;
+                sum = Math.Abs(x % 10) + sum;
                 x = x / 10;
             }
             Console.WriteLine($"Сумма цифр равна {sum}");
@@ -52,17 +60,19 @@ namespace Theme_2
         //Вводить числа, пока не будет введен ноль. Вывести число с максимальной суммой цифр в нем
         public static void Task2()
         {
-            int x , max = 0 ;
-            int sumMax = 0 , sumCurrent=0;
+            int x;
+            int max = 0;
+            int sumMax = 0;
+            int sumCurrent = 0;
             int copy;
             Console.WriteLine("Введите числа , после ввода цифры 0 ввод будет завершен");
             do
             {
-                x = InputCheck();
+                x = Utilities.InputCheck();
                 copy = x;
                 while (copy != 0)
                 {
-                    sumCurrent = x % 10 + sumCurrent;
+                    sumCurrent = Math.Abs(x % 10) + sumCurrent;
                     copy = copy / 10;
                 }
                 if (sumMax < sumCurrent)
@@ -77,25 +87,34 @@ namespace Theme_2
         public static void Task3()
         {
             Console.WriteLine("Введите количество чисел");
-            int n = InputCheck();
-            int sum = 0, x, count = 0 , i=0;
-            if ( n!=0 ) Console.WriteLine("Введите числа");
-            while (i<n)
+            int n = Utilities.CountCheck();
+            int sum = 0;
+            int x;
+            int count = 0;
+            int i = 0;
+            if (n != 0)
             {
-                if ((x = InputCheck()) %2 !=0)
+                Console.WriteLine("Введите числа");
+            }
+            while (i < n)
+            {
+                x = Utilities.InputCheck();
+                if (x % 2 != 0 && count < 3)
                 {
-                    sum = sum + x;
-                    count++;
+                    sum = sum + x; 
+                    count++;       
                 }
                 i++;
             }
-            if (i==n && count < 3 && count !=0)
+            if (i == n && count < 3 && count != 0)
             {
                 Console.WriteLine($"В списке чисел было меньше трех нечетных, вывод суммы имеющихся нечетных чисел : {sum}");
-            }else if (count == 0)
+            }
+            else if (count == 0)
             {
                 Console.WriteLine("В списке чисел нет нечетных чисел");
-            }else
+            }
+            else
             {
                 Console.WriteLine($"Сумма требуемых чисел равна: {sum}");
             }
@@ -104,33 +123,42 @@ namespace Theme_2
         public static void Task4()
         {
             Console.WriteLine("Введите количество чисел");
-            int n = InputCheck();
-            int sum = 0, x, i = 0, last = 0, mid = 0, first = 0;
-            if (n !=0) Console.WriteLine("Введите числа");
+            int n = Utilities.CountCheck();
+            int sum = 0;
+            int x;
+            int i = 0;
+            int last = 0;
+            int mid = 0;
+            int first = 0;
+            if (n != 0)
+            {
+                Console.WriteLine("Введите числа");
+            }
             while (i < n)
             {
-                x = InputCheck();
-                if (last != 0)
+                x = Utilities.InputCheck();
+                if (last != 0 && x % 2 != 0)
                 {
                     sum = sum - first + x;
                     first = mid;
                     mid = last;
-                    last = x;
-                    i++;
+                    last = x; 
                 }
-                else if ( x%2 !=0 )
+                else if (x % 2 != 0)
                 {
-                    if (first == 0 )
+                    if (first == 0)
                     {
                         sum = sum + x;
                         first = x;
-                    }else
-                    if (mid == 0 )
+                    }
+                    else
+                    if (mid == 0)
                     {
                         sum = sum + x;
                         mid = x;
-                    }else
-                    if (last == 0 )
+                    }
+                    else
+                    if (last == 0)
                     {
                         sum = sum + x;
                         last = x;
@@ -141,10 +169,12 @@ namespace Theme_2
             if (last != 0)
             {
                 Console.WriteLine($"Сумма требуемых чисел равна: {sum}");
-            }else if (first == 0)
+            }
+            else if (first == 0)
             {
                 Console.WriteLine("В списке чисел нет нечетных чисел");
-            }else
+            }
+            else
             {
                 Console.WriteLine($"В списке чисел было меньше трех нечетных, вывод суммы имеющихся нечетных чисел : {sum}");
             }
@@ -153,8 +183,8 @@ namespace Theme_2
         public static void Task5()
         {
             Console.WriteLine("Введите 2 числа m и n отражающие размерность фигуры");
-            int n = InputCheck();
-            int m = InputCheck();
+            int n = Utilities.CountCheck();
+            int m = Utilities.CountCheck();
             PrintRectangle(n, m);
             Console.WriteLine();
             PrintTriangleLeftDown(n);
@@ -169,7 +199,7 @@ namespace Theme_2
             Console.WriteLine();
             static void PrintRectangle(int n, int m)
             {
-                for (int i =0; i < n; i++)
+                for (int i = 0; i < n; i++)
                 {
                     for (int j = 0; j < m; j++)
                     {
@@ -178,9 +208,9 @@ namespace Theme_2
                     Console.WriteLine();
                 }
             }
-            static void PrintTriangleLeftDown(int n )
+            static void PrintTriangleLeftDown(int n)
             {
-                for (int i = 0; i<n; i++)
+                for (int i = 0; i < n; i++)
                 {
                     for (int j = 0; j <= i; j++)
                     {
@@ -194,7 +224,7 @@ namespace Theme_2
                 int j;
                 for (int i = 0; i < n; i++)
                 {
-                    for (j = 0; j < n-i-1; j++)
+                    for (j = 0; j < n - i - 1; j++)
                     {
                         Console.Write(" ");
                     }
@@ -205,13 +235,13 @@ namespace Theme_2
                     Console.Write('\n');
                 }
             }
-            static void PrintTriangleRightUp(int n )
+            static void PrintTriangleRightUp(int n)
             {
                 int j;
-                for (int i=0; i < n; i++)
+                for (int i = 0; i < n; i++)
                 {
-                    for (j=0 ; j <i; j++)
-                    { 
+                    for (j = 0; j < i; j++)
+                    {
                         Console.Write(" ");
                     }
                     for (int k = j; j < n; j++)
@@ -226,7 +256,7 @@ namespace Theme_2
                 int j;
                 for (int i = 0; i < n; i++)
                 {
-                    for (j = 0; j < n-i; j++)
+                    for (j = 0; j < n - i; j++)
                     {
                         Console.Write("*");
                     }
@@ -239,8 +269,8 @@ namespace Theme_2
             }
             static void PrintRhombus(int k)
             {
-                int i,j , n =2*k ,mid = n/2;
-                for (i = 0; i < n-1; i++)
+                int i, j, n = 2 * k, mid = n / 2;
+                for (i = 0; i < n - 1; i++)
                 {
                     for (j = 0; j < n; j++)
                     {
@@ -266,7 +296,7 @@ namespace Theme_2
         //Посчитать сумму ряда
         //а) 1 + 2 + 3 + .................. + 50
         //     б)  2+4+6+8+10 + .....  +50
-         //    в)  1+3+5+7+9....
+        //    в)  1+3+5+7+9....
 
         public static void Task6()
         {
@@ -276,7 +306,7 @@ namespace Theme_2
             static void TaskA()
             {
                 int sum = 0;
-                for(int i = 1; i <= 50; i++)
+                for (int i = 1; i <= 50; i++)
                 {
                     sum = sum + i;
                 }
@@ -285,7 +315,7 @@ namespace Theme_2
             static void TaskB()
             {
                 int sum = 0;
-                for (int i = 2; i<=50; i = i + 2)
+                for (int i = 2; i <= 50; i = i + 2)
                 {
                     sum = sum + i;
                 }
@@ -293,10 +323,15 @@ namespace Theme_2
             }
             static void TaskC()
             {
-                Console.WriteLine("Введите конечное нечетное число ряда ");
-                int n = InputCheck();
+                Console.WriteLine("Введите конечное положительное нечетное число ряда ");
+                int n = Utilities.CountCheck();
+                while (Math.Abs(n) % 2 == 0)
+                {
+                    Console.WriteLine("Ошибка ввода , повторите попытку ");
+                    n = Utilities.CountCheck();
+                }
                 int sum = 0;
-                for (int i=1; i<=n; i = i + 2)
+                for (int i = 1; i <= n; i = i + 2)
                 {
                     sum = sum + i;
                 }
@@ -306,7 +341,8 @@ namespace Theme_2
         //Посчитать сумму  6 + 10 + 14 + ................... + 46. Сколько слагаемых?
         public static void Task7()
         {
-            int sum = 0, count = 0;
+            int sum = 0;
+            int count = 0;
             for (int i = 6; i <= 46; i = i + 4)
             {
                 sum = sum + i;
@@ -318,7 +354,8 @@ namespace Theme_2
         //Посчитать сумму  6 + 10 + 14 + ...................   , всего 10 слагаемых.
         public static void Task8()
         {
-            int sum = 0 , x=6;
+            int sum = 0;
+            int x = 6;
             for (int i = 0; i < 10; i++)
             {
                 sum = sum + x;
@@ -329,7 +366,8 @@ namespace Theme_2
         //Посчитать сумму 1+2+4+8+16+....., всего 11 слагаемых.
         public static void Task9()
         {
-            int sum = 0, x = 1;
+            int sum = 0;
+            int x = 1;
             for (int i = 0; i < 11; i++)
             {
                 sum = sum + x;
@@ -341,7 +379,9 @@ namespace Theme_2
         //Остановиться, когда сумма превысит 100. Сколько слагаемых?
         public static void Task10()
         {
-            int sum = 0, x = 6, count = 0 ;
+            int sum = 0;
+            int x = 6;
+            int count = 0;
             while (sum <= 100)
             {
                 sum = sum + x;
@@ -356,7 +396,9 @@ namespace Theme_2
         public static void Task11()
         {
             bool flag = true;
-            int sum = 0, x = 6, count = 0; 
+            int sum = 0;
+            int x = 6;
+            int count = 0;
             while (flag)
             {
                 if (sum + x < 100)
@@ -371,37 +413,29 @@ namespace Theme_2
             Console.WriteLine($"Количество элементов равно {count}");
         }
         //Посчитать сумму первых n чисел Фиббоначи: 1 + 1 + 2 + 3 + 5 + 8 +  13 + … n задается пользователем
-        public static int Task12(int n)
+        public static void Task12()
         {
-            int sum;
-            if (n <= 2)
+            int n = Utilities.CountCheck();
+            int sum = 0;
+            for (int i = 1; i <= n; i++)
             {
-                sum = 1;
+                sum = sum + Number(i);
             }
-            else
+            Console.WriteLine(sum);
+
+            static int Number(int n)
             {
-                sum = Task12(n - 1) + Task12(n - 2);
+                int number = 0;
+                if (n <= 2)
+                {
+                    number = 1;
+                }
+                else
+                {
+                    number = Number(n - 1) + Number(n - 2);
+                }
+                return number;
             }
-            return sum;
-        }
-        public static int InputCheck()
-        {
-            bool check;
-            int n=0;
-            do
-            {
-                try
-                {
-                    n = Convert.ToInt32(Console.ReadLine());
-                    check = true;
-                }
-                catch
-                {
-                    Console.WriteLine("Некорректный ввод");
-                    check = false;
-                }
-            } while (!check);
-            return n;
         }
     }
 }
