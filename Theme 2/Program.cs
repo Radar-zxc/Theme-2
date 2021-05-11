@@ -24,7 +24,7 @@ namespace Theme_2
             //Arrays.Task4();
             //Arrays.Task5();
             //Arrays.Task6();
-            //Arrays.Task7();
+            Arrays.Task7();
             //Strings.Task1();
             //Strings.Task2();
             //Strings.Task3();

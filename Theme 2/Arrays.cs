@@ -118,7 +118,7 @@ namespace Theme_2
                 x = Utilities.InputCheck();
                 while (x > 100 || x < -100)
                 {
-                    Console.WriteLine("Ошибка ввода ,введите значение от [-100 до 100]");
+                    Console.WriteLine("Ошибка ввода, введите значение от [-100 до 100]");
                     x = Utilities.InputCheck();
                 }
                 arr[i] = x;
@@ -363,7 +363,15 @@ namespace Theme_2
         public static void Task7()
         {
             Console.WriteLine("Введите конечное положительное число ");
-            int n = Utilities.CountCheck();
+            int n = -1; ;
+            do
+            {
+                if (n == 0)
+                {
+                    Console.WriteLine("Ошибка ввода, массив нулевой длинны");
+                }
+                n = Utilities.CountCheck();
+            } while (n == 0);
             int[] arr = new int[n];
             for (int i = 0; i < n; i++)
             {
@@ -374,7 +382,7 @@ namespace Theme_2
             Console.WriteLine("Введите количество сдвига позиций ");
             int tmp;
             int m = Utilities.CountCheck();
-            m = m % n;
+             m = m % n;
             for (int i = 0; i<m; i++) //сдвиг вправо
             {
                 tmp = arr[n-1];
@@ -385,7 +393,7 @@ namespace Theme_2
                 arr[0] = tmp;
             }
             Console.WriteLine("Получившийся массив после сдвигов вправо ");
-            Print(arr, n);
+            Print(arr, n); 
             for (int i = 0; i < m; i++) //сдвиг влево
             {
                 tmp = arr[0];

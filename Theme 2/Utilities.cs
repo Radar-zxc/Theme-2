@@ -33,7 +33,7 @@ namespace Theme_2
                 n = InputCheck();
                 if (n < 0)
                 {
-                    Console.WriteLine("Ошибка ввода , введите неотрицательное число");
+                    Console.WriteLine("Ошибка ввода, введите неотрицательное число");
                 }
             } while (n <0);
             return n;

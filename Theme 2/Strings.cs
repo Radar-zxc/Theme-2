@@ -177,7 +177,7 @@ namespace Theme_2
                 }
                 catch
                 {
-                    Console.WriteLine("aboba");
+                    Console.WriteLine("Ошибка ввода");
                     check = false;
                 }
             } while (!check);
