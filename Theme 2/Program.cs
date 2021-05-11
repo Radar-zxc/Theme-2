@@ -22,9 +22,9 @@ namespace Theme_2
             //Arrays.Task2();
             //Arrays.Task3();
             //Arrays.Task4();
-            //Arrays.Task5();
+            Arrays.Task5();
             //Arrays.Task6();
-            Arrays.Task7();
+            //Arrays.Task7();
             //Strings.Task1();
             //Strings.Task2();
             //Strings.Task3();
@@ -79,8 +79,8 @@ namespace Theme_2
                 {
                     sumMax = sumCurrent;
                     max = x;
-                    sumCurrent = 0;
                 }
+                sumCurrent = 0;
             } while (x != 0);
             Console.WriteLine($"Число с максимальной суммой цифр {max}");
         }
@@ -93,10 +93,7 @@ namespace Theme_2
             int x;
             int count = 0;
             int i = 0;
-            if (n != 0)
-            {
-                Console.WriteLine("Введите числа");
-            }
+            Console.WriteLine("Введите числа");
             while (i < n)
             {
                 x = Utilities.InputCheck();
@@ -131,10 +128,7 @@ namespace Theme_2
             int last = 0;
             int mid = 0;
             int first = 0;
-            if (n != 0)
-            {
-                Console.WriteLine("Введите числа");
-            }
+            Console.WriteLine("Введите числа");
             while (i < n)
             {
                 x = Utilities.InputCheck();
@@ -185,7 +179,17 @@ namespace Theme_2
         {
             Console.WriteLine("Введите 2 числа m и n отражающие размерность фигуры");
             int n = Utilities.CountCheck();
+            while (n > 20)
+            {
+                Console.WriteLine("Число должно быть меньше 20");
+                n = Utilities.CountCheck();
+            }
             int m = Utilities.CountCheck();
+            while (m > 20)
+            {
+                Console.WriteLine("Число должно быть меньше 20");
+                m = Utilities.CountCheck();
+            }
             PrintRectangle(n, m);
             Console.WriteLine();
             PrintTriangleLeftDown(n);
@@ -328,7 +332,7 @@ namespace Theme_2
                 int n = Utilities.CountCheck();
                 while (Math.Abs(n) % 2 == 0)
                 {
-                    Console.WriteLine("Ошибка ввода , повторите попытку ");
+                    Console.WriteLine("Ошибка ввода, повторите попытку ");
                     n = Utilities.CountCheck();
                 }
                 int sum = 0;
@@ -416,6 +420,7 @@ namespace Theme_2
         //Посчитать сумму первых n чисел Фиббоначи: 1 + 1 + 2 + 3 + 5 + 8 +  13 + … n задается пользователем
         public static void Task12()
         {
+            Console.WriteLine("Введите номер конечного числа Фиббоначи");
             int n = Utilities.CountCheck();
             int sum = 0;
             for (int i = 1; i <= n; i++)

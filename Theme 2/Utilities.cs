@@ -31,11 +31,11 @@ namespace Theme_2
             do
             {
                 n = InputCheck();
-                if (n < 0)
+                if (n <= 0)
                 {
-                    Console.WriteLine("Ошибка ввода, введите неотрицательное число");
+                    Console.WriteLine("Ошибка ввода, введите число больше 0");
                 }
-            } while (n <0);
+            } while (n <=0);
             return n;
         }
     }

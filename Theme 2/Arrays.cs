@@ -40,6 +40,9 @@ namespace Theme_2
             }
             Console.WriteLine($"Самая частая цифра: {maxDigit}");
             Console.WriteLine($"Количество появлений самой частой цифры {maxCount}");
+            {
+                Console.WriteLine("Массив пуст");
+            }
         }
         //Ввести массив целых чисел. Длина массива задается пользователем. 
         //Определить, упорядочен ли он по возрастанию. По убыванию?
@@ -109,7 +112,7 @@ namespace Theme_2
         public static void Task3()
         {
             Console.WriteLine("Введите количество чисел");
-            int n = Utilities.InputCheck();
+            int n = Utilities.CountCheck();
             Console.WriteLine("Введите значения от [-100 до 100]");
             int[] arr = new int[n];
             int x;
@@ -244,36 +247,30 @@ namespace Theme_2
             bool sortState = true;
             do
             {
-                if (n != 0)
+                Console.WriteLine("Введите числа для первого массива");
+                for (int i = 0; i < n; i++)
                 {
-                    Console.WriteLine("Введите числа для первого массива");
-                    for (int i = 0; i < n; i++)
-                    {
-                        arr1[i] = Utilities.InputCheck();
-                    }
-                    sortState = CheckSort(arr1, n);
-                    if (!sortState)
-                    {
-                        Console.WriteLine("Массив неупорядочен, повторите ввод");
-                        Array.Clear(arr1, 0, n);
-                    }
+                    arr1[i] = Utilities.InputCheck();
+                }
+                sortState = CheckSort(arr1, n);
+                if (!sortState)
+                {
+                    Console.WriteLine("Массив неупорядочен, повторите ввод");
+                    Array.Clear(arr1, 0, n);
                 }
             } while (!sortState);
             do
             {
-                if (p != 0)
+                Console.WriteLine("Введите числа для второго массива");
+                for (int i = 0; i < p; i++)
                 {
-                    Console.WriteLine("Введите числа для второго массива");
-                    for (int i = 0; i < p; i++)
-                    {
-                        arr2[i] = Utilities.InputCheck();
-                    }
-                    sortState = CheckSort(arr2, p);
-                    if (!sortState)
-                    {
-                        Console.WriteLine("Массив неупорядочен, повторите ввод");
-                        Array.Clear(arr2, 0, p);
-                    }
+                    arr2[i] = Utilities.InputCheck();
+                }
+                sortState = CheckSort(arr2, p);
+                if (!sortState)
+                {
+                    Console.WriteLine("Массив неупорядочен, повторите ввод");
+                    Array.Clear(arr2, 0, p);
                 }
             } while (!sortState);
             int l = n + p;
@@ -326,7 +323,7 @@ namespace Theme_2
             int[] arr;
             try
             {
-                using (var sr = new StreamReader("inp.txt"))
+                using (var sr = new StreamReader("inp.txt")) ///////////////////НАЙТИ ГДЕ ИЩЕТСЯ ФАЙЛ ПО УМОЛЧАНИЮ
                 {
                     arr = sr.ReadToEnd().Split().Select(int.Parse).ToArray();
                     sr.Close();
@@ -407,15 +404,8 @@ namespace Theme_2
         public static void Task7()
         {
             Console.WriteLine("Введите конечное положительное число ");
-            int n = -1; ;
-            do
-            {
-                if (n == 0)
-                {
-                    Console.WriteLine("Ошибка ввода, массив нулевой длинны");
-                }
-                n = Utilities.CountCheck();
-            } while (n == 0);
+            int n = Utilities.CountCheck();
+            while (n == 0);
             int[] arr = new int[n];
             for (int i = 0; i < n; i++)
             {
