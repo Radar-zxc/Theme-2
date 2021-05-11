@@ -46,9 +46,9 @@ namespace Theme_2
                 x = Utilities.InputCheck(); 
                 if (Math.Abs(x) < 100 || Math.Abs(x) > 999)
                 {
-                    Console.WriteLine("Число не трехзначное , введите новое число");
+                    Console.WriteLine("Число не трехзначное, введите новое число");
                 }
-            } while (x < 100 && x > 999);
+            } while (Math.Abs(x) < 100 || Math.Abs(x) > 999);
             int sum = 0;
             while (x != 0)
             {
@@ -65,20 +65,21 @@ namespace Theme_2
             int sumMax = 0;
             int sumCurrent = 0;
             int copy;
-            Console.WriteLine("Введите числа , после ввода цифры 0 ввод будет завершен");
+            Console.WriteLine("Введите числа, после ввода цифры 0 ввод будет завершен");
             do
             {
                 x = Utilities.InputCheck();
                 copy = x;
                 while (copy != 0)
                 {
-                    sumCurrent = Math.Abs(x % 10) + sumCurrent;
+                    sumCurrent = Math.Abs(copy % 10) + sumCurrent;
                     copy = copy / 10;
                 }
                 if (sumMax < sumCurrent)
                 {
                     sumMax = sumCurrent;
                     max = x;
+                    sumCurrent = 0;
                 }
             } while (x != 0);
             Console.WriteLine($"Число с максимальной суммой цифр {max}");

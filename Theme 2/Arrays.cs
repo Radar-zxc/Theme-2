@@ -241,16 +241,41 @@ namespace Theme_2
             int p = Utilities.CountCheck();
             int[] arr1 = new int[n];
             int[] arr2 = new int[p];
-            Console.WriteLine("Введите числа для первого массива");
-            for (int i = 0; i < n; i++)
+            bool sortState = true;
+            do
             {
-                arr1[i] = Utilities.InputCheck();
-            }
-            Console.WriteLine("Введите числа для второго массива");
-            for (int i = 0; i < p; i++)
+                if (n != 0)
+                {
+                    Console.WriteLine("Введите числа для первого массива");
+                    for (int i = 0; i < n; i++)
+                    {
+                        arr1[i] = Utilities.InputCheck();
+                    }
+                    sortState = CheckSort(arr1, n);
+                    if (!sortState)
+                    {
+                        Console.WriteLine("Массив неупорядочен, повторите ввод");
+                        Array.Clear(arr1, 0, n);
+                    }
+                }
+            } while (!sortState);
+            do
             {
-                arr2[i] = Utilities.InputCheck();
-            }
+                if (p != 0)
+                {
+                    Console.WriteLine("Введите числа для второго массива");
+                    for (int i = 0; i < p; i++)
+                    {
+                        arr2[i] = Utilities.InputCheck();
+                    }
+                    sortState = CheckSort(arr2, p);
+                    if (!sortState)
+                    {
+                        Console.WriteLine("Массив неупорядочен, повторите ввод");
+                        Array.Clear(arr2, 0, p);
+                    }
+                }
+            } while (!sortState);
             int l = n + p;
             int[] arr3 = new int[l];
             int j = 0, k = 0;
@@ -274,7 +299,26 @@ namespace Theme_2
                     k++;
                 }
             }
-            Print(arr3, l);
+            if (l != 0)
+            {
+                Print(arr3, l);
+            }
+            else
+            {
+                Console.WriteLine("Итоговый массив пуст");
+            }
+            static bool CheckSort(int[] arr , int n)
+            {
+                bool result = true;
+                for (int i = 1; i < n && result; i++)
+                {
+                    if (arr[i - 1] > arr[i])
+                    {
+                        result = false;
+                    }
+                }
+                return result;
+            }
         }
         //Считать из файла массив целых чисел. Упорядочить по возрастанию. Вывести обратно в файл.
         public static void Task5()
@@ -382,7 +426,7 @@ namespace Theme_2
             Console.WriteLine("Введите количество сдвига позиций ");
             int tmp;
             int m = Utilities.CountCheck();
-             m = m % n;
+            m = m % n;
             for (int i = 0; i<m; i++) //сдвиг вправо
             {
                 tmp = arr[n-1];
