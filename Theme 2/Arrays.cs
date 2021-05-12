@@ -40,9 +40,6 @@ namespace Theme_2
             }
             Console.WriteLine($"Самая частая цифра: {maxDigit}");
             Console.WriteLine($"Количество появлений самой частой цифры {maxCount}");
-            {
-                Console.WriteLine("Массив пуст");
-            }
         }
         //Ввести массив целых чисел. Длина массива задается пользователем. 
         //Определить, упорядочен ли он по возрастанию. По убыванию?
@@ -296,14 +293,7 @@ namespace Theme_2
                     k++;
                 }
             }
-            if (l != 0)
-            {
-                Print(arr3, l);
-            }
-            else
-            {
-                Console.WriteLine("Итоговый массив пуст");
-            }
+            Print(arr3, l);
             static bool CheckSort(int[] arr , int n)
             {
                 bool result = true;
@@ -323,7 +313,7 @@ namespace Theme_2
             int[] arr;
             try
             {
-                using (var sr = new StreamReader("inp.txt")) ///////////////////НАЙТИ ГДЕ ИЩЕТСЯ ФАЙЛ ПО УМОЛЧАНИЮ
+                using (var sr = new StreamReader("inp.txt"))
                 {
                     arr = sr.ReadToEnd().Split().Select(int.Parse).ToArray();
                     sr.Close();
@@ -405,7 +395,6 @@ namespace Theme_2
         {
             Console.WriteLine("Введите конечное положительное число ");
             int n = Utilities.CountCheck();
-            while (n == 0);
             int[] arr = new int[n];
             for (int i = 0; i < n; i++)
             {

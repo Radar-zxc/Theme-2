@@ -22,7 +22,7 @@ namespace Theme_2
             //Arrays.Task2();
             //Arrays.Task3();
             //Arrays.Task4();
-            Arrays.Task5();
+            //Arrays.Task5();
             //Arrays.Task6();
             //Arrays.Task7();
             //Strings.Task1();
